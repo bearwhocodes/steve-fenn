@@ -1,13 +1,18 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
+import promise from 'redux-promise';
 import articlesReducer from '../reducers/articles';
 
-export default () => {
-  const store = createStore(
-    combineReducers({
-      articles: articlesReducer
-    }),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  );
+export default initialState => {
+  const finalCreateStore = compose(
+    applyMiddleware(promise),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+  )(createStore);
+
+  const reducer = combineReducers({
+    articles: articlesReducer
+  });
+
+  const store = finalCreateStore(reducer, initialState);
 
   return store;
 };
