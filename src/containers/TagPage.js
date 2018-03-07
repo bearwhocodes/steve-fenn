@@ -5,7 +5,7 @@ import {
   fetchTaggedArticlesSuccess,
   fetchTaggedArticlesFailure
 } from '../actions/articles';
-import ArticlesList from '../components/ArticlesList';
+import ArticleList from '../components/ArticleList';
 
 const mapStatetoProps = state => {
   return {
@@ -25,4 +25,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStatetoProps, mapDispatchToProps)(ArticlesList);
+export default connect(mapStatetoProps, mapDispatchToProps)(ArticleList);
