@@ -1,9 +1,23 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-class NotFoundPage extends Component {
-  render() {
-    return <div>ArticlePage</div>;
+class ArticlePage extends Component {
+  render(props) {
+    const id = props.match.params.id;
+    return (
+      <div>
+        <h1>Articles with id: {id}</h1>
+      </div>
+    );
   }
 }
 
-export default NotFoundPage;
+const mapStateToProps = (state, props) => {
+  return {
+    expense: state.articles.find(
+      article => article.id === props.match.params.id
+    )
+  };
+};
+
+export default connect(mapStateToProps)(ArticlePage);

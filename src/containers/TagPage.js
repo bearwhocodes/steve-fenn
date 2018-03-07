@@ -1,9 +1,24 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-class NotFoundPage extends Component {
-  render() {
-    return <div>TagPage</div>;
+import ArticlesList from '../components/ArticlesList';
+
+class TagPage extends Component {
+  render(props) {
+    const tag = props.match.params.tag;
+    return (
+      <div>
+        <h1>Articles tagged with: {tag}</h1>
+        <ArticlesList articles={props.articles} />
+      </div>
+    );
   }
 }
 
-export default NotFoundPage;
+const mapStatetoProps = state => {
+  return {
+    articles: state.articles
+  };
+};
+
+export default connect(mapStatetoProps)(TagPage);
