@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export const FETCH_ARTICLES = 'FETCH_ARTICLES';
 export const FETCH_ARTICLES_SUCCESS = 'FETCH_ARTICLES_SUCCESS';
 export const FETCH_ARTICLES_FAILURE = 'FETCH_ARTICLES_FAILURE';
@@ -14,7 +12,7 @@ export const FETCH_TAGGED_ARTICLES_FAILURE = 'FETCH_TAGGED_ARTICLES_FAILURE';
 
 // FETCH_ARTICLES
 export const fetchArticles = () => {
-  const request = axios.get('http://api.stevefenn.co.uk/endpoints/articles');
+  const request = fetch('/endpoints/articles');
 
   return {
     type: FETCH_ARTICLES,
@@ -36,9 +34,7 @@ export const fetchArticlesFailure = error => ({
 
 // FETCH_ARTICLE
 export const fetchArticle = id => {
-  const request = axios.get(
-    `http://api.stevefenn.co.uk/endpoints/articles/${id}`
-  );
+  const request = fetch(`/endpoints/articles/${id}`);
 
   return {
     type: FETCH_ARTICLE,

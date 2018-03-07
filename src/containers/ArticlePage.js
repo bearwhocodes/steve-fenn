@@ -10,18 +10,18 @@ import ArticleDetails from '../components/ArticleDetails';
 const mapStatetoProps = (state, props) => {
   return {
     selectedArticle: state.selectedArticle,
-    articleId: props.id
+    articleId: props.match.params.id
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchArticle: id => {
-      dispatch(fetchArticle(id)).then(result => {
-        if (result.payload.response && result.payload.response.status !== 200) {
-          dispatch(fetchArticleFailure(result.payload.response.data));
+      dispatch(fetchArticle(id)).then(response => {
+        if (response.payload.ok) {
+          dispatch(fetchArticleSuccess(response.payload.json()));
         } else {
-          dispatch(fetchArticleSuccess(result.payload.data));
+          dispatch(fetchArticleFailure(response.payload.statusText));
         }
       });
     }

@@ -17,9 +17,11 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchArticles: () => {
       dispatch(fetchArticles()).then(response => {
-        !response.error
-          ? dispatch(fetchArticlesSuccess(response.payload.data))
-          : dispatch(fetchArticlesFailure(response.payload.data));
+        if (response.payload.ok) {
+          dispatch(fetchArticlesSuccess(response.payload.json()));
+        } else {
+          dispatch(fetchArticlesFailure(response.payload.statusText));
+        }
       });
     }
   };

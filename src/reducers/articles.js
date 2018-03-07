@@ -33,12 +33,9 @@ export default (state = INITIAL_STATE, action) => {
         articles: { items: action.payload, error: null, loading: false }
       };
     case FETCH_ARTICLES_FAILURE:
-      const articlesError = action.payload || {
-        message: action.payload.message
-      };
       return {
         ...state,
-        articles: { items: [], error: articlesError, loading: false }
+        articles: { items: [], error: action.payload, loading: false }
       };
     case FETCH_ARTICLE:
       return {
@@ -55,12 +52,13 @@ export default (state = INITIAL_STATE, action) => {
         }
       };
     case FETCH_ARTICLE_FAILURE:
-      const articleError = action.payload || {
-        message: action.payload.message
-      };
       return {
         ...state,
-        selectedArticle: { article: null, error: articleError, loading: false }
+        selectedArticle: {
+          article: null,
+          error: action.payload,
+          loading: false
+        }
       };
     case FETCH_TAGGED_ARTICLES:
       return { ...state, articles: { items: [], error: null, loading: true } };
@@ -70,12 +68,9 @@ export default (state = INITIAL_STATE, action) => {
         articles: { items: action.payload, error: null, loading: false }
       };
     case FETCH_TAGGED_ARTICLES_FAILURE:
-      const taggedArticlesError = action.payload || {
-        message: action.payload.message
-      };
       return {
         ...state,
-        articles: { items: [], error: taggedArticlesError, loading: false }
+        articles: { items: [], error: action.payload, loading: false }
       };
     default:
       return state;
