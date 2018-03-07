@@ -1,23 +1,31 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class ArticlePage extends Component {
-  render(props) {
-    const id = props.match.params.id;
-    return (
-      <div>
-        <h1>Articles with id: {id}</h1>
-      </div>
-    );
-  }
-}
+import {
+  fetchArticle,
+  fetchArticleSuccess,
+  fetchArticleFailure
+} from '../actions/articles';
+import ArticleDetails from '../components/ArticleDetails';
 
-const mapStateToProps = (state, props) => {
+const mapStatetoProps = (state, props) => {
   return {
-    expense: state.articles.find(
-      article => article.id === props.match.params.id
-    )
+    selectedArticle: state.selectedArticle,
+    articleId: props.id
   };
 };
 
-export default connect(mapStateToProps)(ArticlePage);
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchArticle: id => {
+      dispatch(fetchArticle(id)).then(result => {
+        if (result.payload.response && result.payload.response.status !== 200) {
+          dispatch(fetchArticleFailure(result.payload.response.data));
+        } else {
+          dispatch(fetchArticleSuccess(result.payload.data));
+        }
+      });
+    }
+  };
+};
+
+export default connect(mapStatetoProps, mapDispatchToProps)(ArticleDetails);

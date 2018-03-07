@@ -1,24 +1,28 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import {
+  fetchTaggedArticles,
+  fetchTaggedArticlesSuccess,
+  fetchTaggedArticlesFailure
+} from '../actions/articles';
 import ArticlesList from '../components/ArticlesList';
-
-class TagPage extends Component {
-  render(props) {
-    const tag = props.match.params.tag;
-    return (
-      <div>
-        <h1>Articles tagged with: {tag}</h1>
-        <ArticlesList articles={props.articles} />
-      </div>
-    );
-  }
-}
 
 const mapStatetoProps = state => {
   return {
-    articles: state.articles
+    articles: state.articles.items
   };
 };
 
-export default connect(mapStatetoProps)(TagPage);
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchArticles: () => {
+      dispatch(fetchTaggedArticles()).then(response => {
+        !response.error
+          ? dispatch(fetchTaggedArticlesSuccess(response.payload.data))
+          : dispatch(fetchTaggedArticlesFailure(response.payload.data));
+      });
+    }
+  };
+};
+
+export default connect(mapStatetoProps, mapDispatchToProps)(ArticlesList);
