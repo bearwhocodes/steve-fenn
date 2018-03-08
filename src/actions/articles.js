@@ -55,9 +55,14 @@ export const fetchArticleFailure = error => ({
 });
 
 // FETCH_TAGGED_ARTICLES
-export const fetchTaggedArticles = () => ({
-  type: FETCH_TAGGED_ARTICLES
-});
+export const fetchTaggedArticles = tag => {
+  const request = fetch(`/endpoints/tags/${tag}/articles`);
+
+  return {
+    type: FETCH_TAGGED_ARTICLES,
+    payload: request
+  };
+};
 
 // FETCH_TAGGED_ARTICLES_SUCCESS
 export const fetchTaggedArticlesSuccess = articles => ({

@@ -9,7 +9,7 @@ import ArticleList from '../components/ArticleList';
 
 const mapStatetoProps = state => {
   return {
-    articles: state.articles.items
+    articles: state.articles.articleList
   };
 };
 

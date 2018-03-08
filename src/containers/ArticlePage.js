@@ -9,7 +9,7 @@ import ArticleDetails from '../components/ArticleDetails';
 
 const mapStatetoProps = (state, props) => {
   return {
-    selectedArticle: state.selectedArticle,
+    selectedArticle: state.articles.selectedArticle,
     articleId: props.match.params.id
   };
 };

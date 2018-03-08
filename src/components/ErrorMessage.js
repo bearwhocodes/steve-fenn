@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const NotFoundPage = ({ error }) => (
+const ErrorMessage = ({ error }) => (
   <div>
-    <h1>404! Page Not Found</h1>
+    <h1>Oops something has gone wrong!</h1>
+    <p>{this.props.error}</p>
     <p>
       <Link to="/">Go Home</Link>
     </p>
   </div>
 );
 
-export default NotFoundPage;
+export default ErrorMessage;

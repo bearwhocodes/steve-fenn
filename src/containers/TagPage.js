@@ -7,16 +7,17 @@ import {
 } from '../actions/articles';
 import ArticleList from '../components/ArticleList';
 
-const mapStatetoProps = state => {
+const mapStatetoProps = (state, props) => {
   return {
-    articles: state.articles.items
+    articles: state.articles.articleList,
+    tag: props.match.params.tag
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchArticles: () => {
-      dispatch(fetchTaggedArticles()).then(response => {
+    fetchArticles: tag => {
+      dispatch(fetchTaggedArticles(tag)).then(response => {
         if (response.payload.ok) {
           dispatch(fetchTaggedArticlesSuccess(response.payload.json()));
         } else {

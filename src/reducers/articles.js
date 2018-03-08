@@ -11,7 +11,7 @@ import {
 } from '../actions/articles';
 
 const INITIAL_STATE = {
-  articles: {
+  articleList: {
     items: [],
     error: null,
     loading: false
@@ -26,16 +26,19 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FETCH_ARTICLES:
-      return { ...state, articles: { items: [], error: null, loading: true } };
+      return {
+        ...state,
+        articleList: { items: [], error: null, loading: true }
+      };
     case FETCH_ARTICLES_SUCCESS:
       return {
         ...state,
-        articles: { items: action.payload, error: null, loading: false }
+        articleList: { items: action.payload, error: null, loading: false }
       };
     case FETCH_ARTICLES_FAILURE:
       return {
         ...state,
-        articles: { items: [], error: action.payload, loading: false }
+        articleList: { items: [], error: action.payload, loading: false }
       };
     case FETCH_ARTICLE:
       return {
@@ -61,16 +64,19 @@ export default (state = INITIAL_STATE, action) => {
         }
       };
     case FETCH_TAGGED_ARTICLES:
-      return { ...state, articles: { items: [], error: null, loading: true } };
+      return {
+        ...state,
+        articleList: { items: [], error: null, loading: true }
+      };
     case FETCH_TAGGED_ARTICLES_SUCCESS:
       return {
         ...state,
-        articles: { items: action.payload, error: null, loading: false }
+        articleList: { items: action.payload, error: null, loading: false }
       };
     case FETCH_TAGGED_ARTICLES_FAILURE:
       return {
         ...state,
-        articles: { items: [], error: action.payload, loading: false }
+        articleList: { items: [], error: action.payload, loading: false }
       };
     default:
       return state;

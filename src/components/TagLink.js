@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-class TagLink extends Component {
-  render() {
-    return <div>TagLink</div>;
-  }
-}
+const TagLink = ({ tag }) => (
+  <span>
+    # <Link to={`/tags/${tag}`}>{tag}</Link>
+  </span>
+);
 
 export default TagLink;
