@@ -3,13 +3,16 @@ import { connect } from 'react-redux';
 import {
   fetchTaggedArticles,
   fetchTaggedArticlesSuccess,
-  fetchTaggedArticlesFailure
+  fetchTaggedArticlesFailure,
+  fetchTaggedArticlesOnPage,
+  fetchTaggedArticlesOnPageSuccess,
+  fetchTaggedArticlesOnPageFailure
 } from '../actions/articles';
 import ArticleList from '../components/ArticleList';
 
 const mapStatetoProps = (state, props) => {
   return {
-    articles: state.articles.articleList,
+    articles: state.articleList,
     tag: props.match.params.tag
   };
 };
@@ -22,6 +25,17 @@ const mapDispatchToProps = dispatch => {
           dispatch(fetchTaggedArticlesSuccess(response.payload.json()));
         } else {
           dispatch(fetchTaggedArticlesFailure(response.payload.statusText));
+        }
+      });
+    },
+    changePageNumber: (pageNumber, tag) => {
+      dispatch(fetchTaggedArticlesOnPage(tag, pageNumber)).then(response => {
+        if (response.payload.ok) {
+          dispatch(fetchTaggedArticlesOnPageSuccess(response.payload.json()));
+        } else {
+          dispatch(
+            fetchTaggedArticlesOnPageFailure(response.payload.statusText)
+          );
         }
       });
     }
