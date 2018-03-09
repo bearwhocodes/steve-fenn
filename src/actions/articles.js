@@ -22,7 +22,7 @@ export const FETCH_TAGGED_ARTICLES_ON_PAGE_FAILURE =
 
 // FETCH_ARTICLES
 export const fetchArticles = () => {
-  const request = fetch('/endpoints/articles');
+  const request = fetch('http://api.stevefenn.co.uk/endpoints/articles');
 
   return {
     type: FETCH_ARTICLES,
@@ -44,7 +44,9 @@ export const fetchArticlesFailure = error => ({
 
 // FETCH_ARTICLES_ON_PAGE
 export const fetchArticlesOnPage = pageNumber => {
-  const request = fetch(`/endpoints/articles?page=${pageNumber}`);
+  const request = fetch(
+    `http://api.stevefenn.co.uk/endpoints/articles?page=${pageNumber}`
+  );
 
   return {
     type: FETCH_ARTICLES_ON_PAGE,
@@ -66,7 +68,7 @@ export const fetchArticlesOnPageFailure = error => ({
 
 // FETCH_ARTICLE
 export const fetchArticle = id => {
-  const request = fetch(`/endpoints/articles/${id}`);
+  const request = fetch(`http://api.stevefenn.co.uk/endpoints/articles/${id}`);
 
   return {
     type: FETCH_ARTICLE,
@@ -88,7 +90,9 @@ export const fetchArticleFailure = error => ({
 
 // FETCH_TAGGED_ARTICLES
 export const fetchTaggedArticles = (tag, pageNumber) => {
-  const request = fetch(`/endpoints/tags/${tag}/articles`);
+  const request = fetch(
+    `http://api.stevefenn.co.uk/endpoints/tags/${tag}/articles`
+  );
 
   return {
     type: FETCH_TAGGED_ARTICLES,
@@ -110,7 +114,9 @@ export const fetchTaggedArticlesFailure = error => ({
 
 // FETCH_TAGGED_ARTICLES_ON_PAGE
 export const fetchTaggedArticlesOnPage = (tag, pageNumber) => {
-  const request = fetch(`/endpoints/tags/${tag}/articles&page=${pageNumber}`);
+  const request = fetch(
+    `http://api.stevefenn.co.uk/endpoints/tags/${tag}/articles&page=${pageNumber}`
+  );
 
   return {
     type: FETCH_TAGGED_ARTICLES_ON_PAGE,
