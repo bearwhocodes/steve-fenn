@@ -14,12 +14,12 @@ const INITIAL_STATE = {
   articleList: {
     items: [],
     error: null,
-    loading: false
+    loading: true
   },
   selectedArticle: {
     article: null,
     error: null,
-    loading: false
+    loading: true
   }
 };
 
