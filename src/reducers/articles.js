@@ -135,7 +135,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         articleList: {
-          items: action.payload,
+          items: action.payload.articles,
           error: null,
           loading: false,
           page: action.payload.page,
@@ -166,7 +166,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         articleList: {
-          items: action.payload,
+          items: action.payload.articles,
           error: null,
           loading: false,
           page: action.payload.page,
