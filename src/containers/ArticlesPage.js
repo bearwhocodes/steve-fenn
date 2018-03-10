@@ -11,7 +11,6 @@ import {
 import ArticleList from '../components/ArticleList';
 
 const mapStatetoProps = state => {
-  console.log(state);
   return {
     articles: state.articleList
   };
