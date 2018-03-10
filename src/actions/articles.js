@@ -22,7 +22,7 @@ export const FETCH_TAGGED_ARTICLES_ON_PAGE_FAILURE =
 
 // FETCH_ARTICLES
 export const fetchArticles = () => {
-  const request = fetch('http://api.stevefenn.co.uk/endpoints/articles');
+  const request = fetch(`${process.env.REACT_APP_API_URL}/endpoints/articles`);
 
   return {
     type: FETCH_ARTICLES,
@@ -45,7 +45,7 @@ export const fetchArticlesFailure = error => ({
 // FETCH_ARTICLES_ON_PAGE
 export const fetchArticlesOnPage = pageNumber => {
   const request = fetch(
-    `http://api.stevefenn.co.uk/endpoints/articles?page=${pageNumber}`
+    `${process.env.REACT_APP_API_URL}/endpoints/articles?page=${pageNumber}`
   );
 
   return {
@@ -68,7 +68,9 @@ export const fetchArticlesOnPageFailure = error => ({
 
 // FETCH_ARTICLE
 export const fetchArticle = id => {
-  const request = fetch(`http://api.stevefenn.co.uk/endpoints/articles/${id}`);
+  const request = fetch(
+    `${process.env.REACT_APP_API_URL}/endpoints/articles/${id}`
+  );
 
   return {
     type: FETCH_ARTICLE,
@@ -91,7 +93,7 @@ export const fetchArticleFailure = error => ({
 // FETCH_TAGGED_ARTICLES
 export const fetchTaggedArticles = (tag, pageNumber) => {
   const request = fetch(
-    `http://api.stevefenn.co.uk/endpoints/tags/${tag}/articles`
+    `${process.env.REACT_APP_API_URL}/endpoints/tags/${tag}/articles`
   );
 
   return {
@@ -115,7 +117,9 @@ export const fetchTaggedArticlesFailure = error => ({
 // FETCH_TAGGED_ARTICLES_ON_PAGE
 export const fetchTaggedArticlesOnPage = (tag, pageNumber) => {
   const request = fetch(
-    `http://api.stevefenn.co.uk/endpoints/tags/${tag}/articles&page=${pageNumber}`
+    `${
+      process.env.REACT_APP_API_URL
+    }/endpoints/tags/${tag}/articles&page=${pageNumber}`
   );
 
   return {
